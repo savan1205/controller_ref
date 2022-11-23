@@ -1,0 +1,62 @@
+<!-- #5a4f7f -->
+<odoo>
+    <template id="employees_from_controllers" name="Employees">
+        <t t-call="website.layout">
+            <t t-set="additional_title">Employees</t>
+            <a href="http://localhost:4002/web#cids=1&amp;menu_id=224&amp;action=340&amp;model=hr.employee&amp;view_type=kanban">
+                <h3>All Employees</h3>
+            </a>
+            <div id="wrap">
+                <t t-set="bg_blue" t-value="{'Professional Services': 'blue', 'Management': 'pink', 'Professional Services': '#FFFF00'}"/>
+                <!-- <t t-set="color_blue" t-value="bg-info"/>-->
+                <!-- <div class="container">-->
+                <div class="oe_structure">
+                    <div class="row borde                             r border-dark text-center" id="heading" style="background-color:#d9dcd1;">
+                        <div class="col-3 border border-dark">Employee</div>
+                        <div class="col-2 border border-dark">Name</div>
+                        <div class="col-2 border border-dark">Phone</div>
+                        <div class="col-3 border border-dark">Email </div>
+                        <div class="col-2 border border-dark">Department </div>
+                    </div>
+                    <!-- <div class="card" t-foreach="employees" t-as="employee"><div class="card-body">-->
+                    <div class="row border dotted solid double text-center" t-as="employee" t-foreach="employees">
+                        <!-- <t t-set="project_name" t-value="employee.department_id.name"/>-->
+                        <div class="col-3 border border-dark" style="border-left: 6px solid green">
+                            <img class="img img-responsive" style="width:50%; " t-attf-src="/web/image/hr.employee/#{employee.id}/image_1920"/>
+                        </div>
+                        <div class="col-2 border border-dark">
+                            <a t-attf-href="/employee/#{employee.id}" target="_blank">
+                                <t t-out="employee.name"/>
+                            </a>
+                        </div>
+                        <div class="col-2 border border-dark">
+                            <t t-out="employee.work_phone"/>
+                        </div>
+                        <!-- <div class="col-3  border border-dark " ><t t-if="employee.work_email"><t t-esc="employee.work_email"/></t><t t-else=""><p>No Email</p></t></div>-->
+                        <div class="col-3  border border-dark " t-attf-style="background-color:#{employee.department_id.name=='Professional Services' and 'red' or '0000FF'}">
+                            <t t-esc="employee.work_email"/>
+                            <!-- <t t-else=""><p>No Email</p></t>-->
+                        </div>
+                        <div class="col-2 border border-dark">
+                            <t t-esc="employee.department_id.name"/>
+                        </div>
+                        <hr/>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+    
+    <template id="employees_details" name="Employees Details">
+        <t t-call="website.layout">
+            <t t-set="additional_title">
+                <t t-esc="employee.name"/>
+            </t>
+            <div id="wrap">
+                <h3>
+                    <t t-esc="employee.name"/>
+                </h3>
+            </div>
+        </t>
+    </template>
+</odoo>

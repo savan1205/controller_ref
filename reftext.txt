@@ -1,0 +1,2 @@
+
+python3 odoo-bin --addons-path=addons/,/home/odoo/Desktop/practiceModule --xmlrpc-port 4002 -d v15practiceModule -u practice_module
